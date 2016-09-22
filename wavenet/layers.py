@@ -24,8 +24,8 @@ def time_to_batch(inputs, rate):
 
     zeros = tf.zeros(shape=(batch_size, pad_left, channels))
     padded = tf.concat(1, (zeros, inputs))
-    padded_reshape = tf.reshape(padded, (batch_size * (width_pad / rate), rate,
-                                         channels))
+    padded_reshape = tf.reshape(padded, (batch_size * (width_pad // rate),
+                                         rate, channels))
     outputs = tf.transpose(padded_reshape, perm=(1, 0, 2))
     return outputs, pad_left - rate
 
@@ -42,7 +42,7 @@ def batch_to_time(inputs, crop_left, rate):
     Ouputs:
       outputs: (tensor)
     '''
-    batch_size = tf.shape(inputs)[0] / rate
+    batch_size = tf.shape(inputs)[0] // rate
     width = tf.shape(inputs)[1]
     _, _, channels = inputs.get_shape().as_list()
     out_width = tf.to_int32(width * rate)

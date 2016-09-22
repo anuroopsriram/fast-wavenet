@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-from layers import (Queue, _causal_linear, _output_linear, conv1d,
-                    dilated_conv1d)
+
+from wavenet.layers import (Queue, _causal_linear, _output_linear, conv1d,
+                            dilated_conv1d)
 
 
 class Model(object):
@@ -72,7 +73,7 @@ class Generator(object):
         inputs = tf.placeholder(tf.float32, [batch_size, input_size],
                                 name='inputs')
 
-        print 'Make Generator.'
+        print('Make Generator.')
 
         count = 0
         h = inputs
