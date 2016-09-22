@@ -1,4 +1,5 @@
 from time import time
+from scipy.io import wavfile
 
 from wavenet.utils import make_batch
 from wavenet.models import Model, Generator
@@ -31,3 +32,4 @@ tic = time()
 predictions = generator.run(input_)
 toc = time()
 print('Generating took {} seconds.'.format(toc-tic))
+wavfile.write('predicted.wav', rate=44100, predictions=predictions)
