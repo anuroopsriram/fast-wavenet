@@ -7,7 +7,7 @@ from wavenet.models import Model, Generator
 inputs, targets = make_batch('assets/voice.wav')
 num_time_samples = inputs.shape[1]
 num_channels = 1
-gpu_fraction = 1.0
+gpu_fraction = 0.8
 
 print('Building model')
 model = Model(num_time_samples=num_time_samples,
